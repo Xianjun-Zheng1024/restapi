@@ -1,0 +1,41 @@
+<div ng-show="gridDataConfig.data != undefined" class="grid-table">
+    <table>
+        <thead>
+            <th ng-if="showSelectCol == true"></th>
+            <th ng-repeat="item in columns" ng-show="item.show">{{item.displayName}}&nbsp;
+                <a rel='prev' href="javascript:void(0);" ng-click="dataSort(item,true)" ng-show="item.sort!=3"
+                   ng-class="{'table-sort-normal':item.sort==2,'table-sort-desc':item.sort==1,'table-sort-asc':item.sort==0}"></a></th>
+        </thead>
+        <tr>
+            <td ng-if="showSelectCol == true"></td>
+            <td ng-repeat="item in columns" ng-show="item.show"><input data-ng-change="dataFilter()" ng-model='item.filter' ng-show="item.filter!=undefined"></td>
+        </tr>
+        <tr id="tr-content" ng-repeat='item in currentPageData' ng-click="selectItem(item)" ng-class="{'grid-table-tr-select':item==currentItem}">
+            <td ng-if="showSelectCol == true"><input class="grid-table-checkbox" type="checkbox" ng-model="item.select"></input></td>
+            <td ng-repeat="col in columns" ng-show="col.show">
+                <p ng-if="col.columnType == 'custom'" ng-bind-html="convert(item[col.displayHtml])"></p>
+                <p ng-if="col.columnType != 'custom'" ng-bind-html="localDate(item[col.columnName])">{{localDate(item[col.columnName])}}</p>
+            </td>
+        </tr>
+    </table>
+</div> 
+<div ng-show="gridDataConfig.data != undefined" class="div-paging" id="div-paging">
+    Total&nbsp;{{totalItems}}&nbsp;items,&nbsp;per&nbsp;page:&nbsp;
+    <select ng-model="itemsPerPage" ng-init='10' ng-options='x for x in [10,15,30,50]' ng-change="changeCurrentPageData(currentPage)">
+    </select>&nbsp;&nbsp;&nbsp;&nbsp;
+    <pagination total-items="totalItems" ng-model="currentPage" max-size="5" items-per-page="itemsPerPage" first-text="|<" previous-text="<"
+                next-text=">" last-text=">|" boundary-links="true" rotate="false"></pagination>&nbsp;&nbsp;&nbsp;&nbsp;
+    page:&nbsp;&nbsp;<input type='number' min='1' max="{{maxPage}}" class="jumpInput" ng-model="jumpPage"></input>&nbsp;&nbsp;of&nbsp;2&nbsp;&nbsp;
+    <div class="pagingButton">
+    <input type="button" ng-class='{inputButton:(jumpPage>maxPage || jumpPage<=0 || jumpPage==undefined),selectColumns:(jumpPage>0 && jumpPage<=maxPage)}' ng-click="currentPage=jumpPage" value="go" ng-disabled="!(jumpPage>0 && jumpPage<=maxPage)"></input>&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="button" class="selectColumns" ng-click="showSelectColumn = !showSelectColumn" value="......"></input>
+    </div>
+    <div class='div-select-column' ng-show='showSelectColumn'>
+        <ul>
+            <li ng-repeat="item in columns"><input type='checkbox' ng-model=item.show>{{item.displayName}}</input></li>
+        <ul>
+    </div>
+</div>
+<div ng-show="gridDataConfig.data == undefined">
+    loading......
+</div>

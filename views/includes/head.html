@@ -1,0 +1,15 @@
+<!-- head html for main.html -->
+<img class='top-left' src='./images/logo/logo-open-taas@2x.png' style="height: 24px;"></img>
+
+<div class='user-about'>
+    <img src='../../images/icon/open-taas-user.png'></img>&nbsp;{{username}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <img id="helpMark" src='./images/icon/open-taas-help.png' onmouseenter="$('#helpUrls').css({'display':'block'})"
+        onmouseleave="helpTime=setTimeout(function(){$('#helpUrls').css({'display':'none'})},500)"></img>
+    <ul id="helpUrls" style="display:none;" onmouseenter="clearTimeout(helpTime)"
+        onmouseleave="$('#helpUrls').css({'display':'none'})">
+        <li ng-if="super == 1"><a rel='noopener noreferrer' target="_blank" href="../admin">Administrator</a></li>
+        <li><a rel='noopener noreferrer' target="_blank" href="https://www.baidu.com">User guide</a></li>
+        <li><a rel='noopener noreferrer' target="_blank" href="https://www.baidu.com">Q&A</a></li>
+        <li><a rel='noopener noreferrer' target="_blank" href="https://www.baidu.com">Campaign info</a>
+    </ul>
+</div>

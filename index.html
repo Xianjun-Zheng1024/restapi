@@ -1,0 +1,58 @@
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>RestAPI</title>
+
+      <!-- main.css -->
+      <link rel="stylesheet" href="./styles/main.css">
+      <link rel="stylesheet" href="./styles/add-job.css">
+      <link rel="stylesheet" href="./styles/taas-dialog.css">
+      <link rel="stylesheet" href="./styles/bootstrap.min.css"/>
+      <link rel="stylesheet" href="./styles/dataTables.bootstrap.css"/>
+      
+      <!-- main.js -->
+      <script src="./js/angular.min.js"></script>
+      <script src="./js/angular-route.min.js"></script>
+      <script src="./js/jquery.min.js"></script>
+      <script src="./js/moment.js"></script>
+      <script src="./js/ui-bootstrap.js"></script>
+      <script src="./js/angular-sanitize.min.js"></script>
+	  
+      <!-- application  -->
+      <script src="./scripts/app.js"></script>
+      <script src="./scripts/factory/whitelist_api.js"></script>
+      <script src="./scripts/controller/whiltelist.js"></script>
+      <script src="./scripts/directives/gridDataList.js"></script>
+      
+   </head >
+ 
+   <body ng-app="mainApp">
+      <!-- head -->
+      <div id='idx-top' ng-include="'./views/includes/head.html'"></div>
+      <!-- navigator -->
+      <div class="div-main">
+         <div class="div-nav">
+            <a rel='prev' href='#!/Whitelist' ng-class='{activeUrl:currentUrl=="Whitelist",unactiveUrl:currentUrl!="Whitelist"}'>
+               <img ng-show="currentUrl=='Whitelist'" src='./images/nav-left/taas-run-test01.png'></img>
+               <img ng-show="currentUrl!='Whitelist'" src='./images/nav-left/taas-run-test02.png'></img>
+               <br/><font>Whitelist</font>
+           </a>
+           <a rel='prev' href='#!/BDBA' ng-class='{activeUrl:currentUrl=="BDBA",unactiveUrl:currentUrl!="BDBA"}'>
+               <img ng-show="currentUrl=='BDBA'" src='./images/nav-left/taas-history-result01.png'></img>
+               <img ng-show="currentUrl!='BDBA'" src='./images/nav-left/taas-history-result02.png'></img>
+               <br/><font>BDBA</font>
+           </a>
+           <!-- logo -->
+           <div class="intel-cela-icon">
+               <img src='./images/logo/icon-inter-bule.png' class="icon-intel"><br/><br/>
+               <img src='./images/logo/logo-celadon.png' class="icon-celadon">
+           </div>
+         </div>
+         <!-- content -->
+         <div class="div-content">
+            <br/>
+            <div ng-view></div>
+         </div>
+      </div>
+   </body>
+</html>
